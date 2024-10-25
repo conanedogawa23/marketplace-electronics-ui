@@ -1,0 +1,7 @@
+**/node_modules
+*.d.ts
+dist
+pnpm-lock.yaml
+package-lock.json
+.github
+kubernetes-manifests

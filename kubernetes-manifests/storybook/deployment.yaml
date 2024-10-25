@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui_marketplaceminated-storybook
+  labels:
+    app: ui_marketplaceminated-storybook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui_marketplaceminated-storybook
+  template:
+    metadata:
+      labels:
+        app: ui_marketplaceminated-storybook
+    spec:
+      containers:
+        - name: ui_marketplaceminated-storybook
+          image: example.dkr.ecr.us-east-2.amazonaws.com/illuminated-backend-dev:1.0.0
+          imagePullPolicy: Always
+          env:
+          - name: APP_ENV
+            value: 
+          - name: NODE_ENV
+            value: development
+          ports:
+            - containerPort: 3000

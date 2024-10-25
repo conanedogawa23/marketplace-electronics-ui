@@ -1,0 +1,30 @@
+name: Lint Check
+on:
+  push:
+    branches: [dev, storybook, main, staging]
+  pull_request:
+    branches: [dev, storybook, main, staging]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Node dependencies
+      run: npm i
+
+    - name: Run lint checker
+      run: npm run lint
+
+    - name: Test Build
+      run: npm run build
